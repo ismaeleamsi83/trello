@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop'; 
+import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-body',
@@ -10,16 +10,21 @@ import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray } from '@angular/cdk/
 })
 export class BodyComponent {
 
-  movies = [
-    'Crear el proyecto de angular',
-    'Crear el componente Header',
-    'Agregar el componente Header al componente principal',
-    'Maquetar el componente Header',
-    'Crear condición sin elegir editar que solo se muestre los datos en el perfil y no pueda modificar los inputs',
-  ];  
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
 }

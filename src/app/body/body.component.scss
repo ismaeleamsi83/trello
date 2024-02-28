@@ -1,16 +1,26 @@
-.example-list {
-    width: 500px;
+.example-container {
+    width: 300px;
     max-width: 100%;
+    margin: 2rem 1rem 1rem 1rem;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+    background-color: #F1F2F4;
+    border-radius: 0.5rem;
+  }
+  
+  .example-list {
+    margin-top: 1rem;
     border: solid 1px #ccc;
     min-height: 60px;
-    display: block;
     background: white;
     border-radius: 4px;
     overflow: hidden;
+    display: block;
+    
   }
   
   .example-box {
-    border-radius: 0.5rem;
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
