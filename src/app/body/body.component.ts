@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 
 @Component({
@@ -9,6 +9,11 @@ import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } 
   styleUrl: './body.component.scss'
 })
 export class BodyComponent {
+
+  @ViewChild('showElementTask') showElementTask!: ElementRef;
+
+  nameTask: any;
+
 
   todo = [
     "Diseñar la estructura de la aplicación",
@@ -21,6 +26,10 @@ export class BodyComponent {
 
   done : any = [];
 
+  newArrayList : any = [
+    { id:1 , name:"Nuevo elemento" }
+  ];
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -32,6 +41,19 @@ export class BodyComponent {
         event.currentIndex,
       );
     }
+  }
+
+  editTask(nameTask: any){
+    console.log("editando tarea: ",  nameTask);
+    this.showElementTask.nativeElement.classList.remove('hideTask');
+    this.showElementTask.nativeElement.classList.add('showTask');
+    this.nameTask=nameTask;
+  }
+
+  closeTask(){
+    console.log("cerrando tarea");
+    this.showElementTask.nativeElement.classList.remove('showTask');
+    this.showElementTask.nativeElement.classList.add('hideTask');
   }
 
 }

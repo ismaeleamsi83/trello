@@ -13,8 +13,8 @@
           [cdkDropListConnectedTo]="[processList, doneList]"
           class="example-list"
           (cdkDropListDropped)="drop($event)">
-          @for (item of todo; track item) {
-            <div class="example-box" cdkDrag>{{item}}</div>
+          @for (item of todo; track $index) {
+            <div (click)="editTask(item)" class="example-box" cdkDrag>{{item}}</div>
           }
         </div>
     </div>
@@ -50,9 +50,17 @@
           }
         </div>
     </div>
-
     
       
+</div>
+
+<div #showElementTask class="hideTask">
+    <div style="width: 300px; height: 300px; background-color: aliceblue; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+        <input type="text" [value]="nameTask" style="width: 100%;"><br><br>
+        <span>Descripción</span><br>
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
+        <button (click)="closeTask()">Cerrar</button>
+    </div>
 </div>
     
 
