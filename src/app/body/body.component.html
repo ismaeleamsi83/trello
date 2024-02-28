@@ -1,10 +1,12 @@
 <div style="float: left; background-color: #0079BF; width: calc(80% - 1px); height: 100%; margin: 1px 0 0 1px; display: flex; gap: 1rem;">
     
-    <div style="width: 25%;">
-        <span>Listas de tareas</span>
-        <div style="background-color: aliceblue;">
-            Para mover 1
-        </div>
+    <div style="width: 25%; background-color: #F1F2F4; padding: 1rem 0.5rem; margin: 0.5rem; border-radius: 0.5rem;">
+        <span style="margin-left: 0.5rem;">Lista de tareas</span>
+        <div style="margin-top: 1rem;" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            @for (movie of movies; track movie) {
+              <div class="example-box" cdkDrag>{{movie}}</div>
+            }
+        </div>     
     </div>
     <div style="width: 25%;">
         <span>En proceso</span>
@@ -14,9 +16,10 @@
     </div>
     <div style="width: 25%;">
         <span>Finalizado</span>
-        <div style="background-color: aliceblue;">
-            Para mover 3
+        <div class="example-box" cdkDrag>
+            Drag me around
         </div>
+          
     </div>
 </div>
 
