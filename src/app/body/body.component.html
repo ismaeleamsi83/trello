@@ -55,11 +55,18 @@
 </div>
 
 <div #showElementTask class="hideTask">
-    <div style="width: 300px; height: 300px; background-color: aliceblue; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
-        <input type="text" [value]="nameTask" style="width: 100%;"><br><br>
-        <span>Descripción</span><br>
-        <textarea name="description" id="" cols="30" rows="10"></textarea>
-        <button (click)="closeTask()">Cerrar</button>
+    <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 400px; max-height: 400px; background-color: aliceblue; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+      <button (click)="closeTask()" style="background-color: transparent;cursor: pointer;position: absolute;top:8px; right: 12px; border: none; font-size: 1.2rem;">X</button>
+      <span style="margin-top: 2rem;">Título</span> 
+      <input type="text" [value]="nameTask" style="width: 100%; padding: 4px;">
+      <br>
+      <span>Descripción</span>
+      <textarea name="description" id="" cols="30" rows="10" style="padding: 4px;"></textarea>
+      <br>
+      <div style="width: auto;">
+        <button style="cursor: pointer;display: inline-block; padding: 0.2rem 2rem;background-color: #005C91;color:white">Guardar</button>
+      </div>
+      
     </div>
 </div>
     
