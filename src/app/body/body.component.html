@@ -65,7 +65,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)">
         @for (item of newArrayList; track item) {
-          <div class="example-box" cdkDrag>{{item.name}}</div>
+          <div (click)="editTask(item)" class="example-box" cdkDrag>{{item.name}}</div>
         }
       </div>
   </div>
@@ -74,16 +74,17 @@
 
 <div #showElementTask class="hideTask">
     <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 400px; max-height: 400px; background-color: aliceblue; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
-      <button (click)="closeTask()" style="background-color: transparent;cursor: pointer;position: absolute;top:8px; right: 12px; border: none; font-size: 1.2rem;">X</button>
-      <span style="margin-top: 2rem;">Título</span> 
-      <input type="text" [value]="nameTask" style="width: 100%; padding: 4px;">
-      <br>
-      <span>Descripción</span>
-      <textarea name="description" id="" cols="30" rows="10" style="padding: 4px;"></textarea>
-      <br>
-      <div style="width: auto;">
-        <button style="cursor: pointer;display: inline-block; padding: 0.2rem 2rem;background-color: #005C91;color:white">Guardar</button>
-      </div>
+      
+        <button (click)="closeTask()" style="background-color: transparent;cursor: pointer;position: absolute;top:8px; right: 12px; border: none; font-size: 1.2rem;">X</button>
+        <span style="margin-top: 2rem;">Título</span> 
+        <input type="text" [(ngModel)]="editTaskSelect.name" style="width: 100%; padding: 4px;">
+        <br>
+        <span>Descripción</span>
+        <textarea [(ngModel)]="editTaskSelect.description"  name="description" id="" cols="30" rows="10" style="padding: 4px;"></textarea>
+        <br>
+        <div style="width: auto;">
+          <button style="cursor: pointer;display: inline-block; padding: 0.2rem 2rem;background-color: #005C91;color:white" (click)="saveTask(editTaskSelect)">Guardar</button>
+        </div>
       
     </div>
 </div>
