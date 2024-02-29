@@ -52,6 +52,24 @@
     </div>
     
       
+    <!-- Probar con array  de objetos -->
+
+    <div class="example-container">
+      <span style="margin-left: 0.5rem;">Array de Objetos</span>
+    
+      <div
+        cdkDropList
+        #newList="cdkDropList"
+        [cdkDropListData]="newArrayList"
+        [cdkDropListConnectedTo]="[processList, todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        @for (item of newArrayList; track item) {
+          <div class="example-box" cdkDrag>{{item.name}}</div>
+        }
+      </div>
+  </div>
+
 </div>
 
 <div #showElementTask class="hideTask">

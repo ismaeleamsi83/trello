@@ -27,10 +27,11 @@ export class BodyComponent {
   done : any = [];
 
   newArrayList : any = [
-    { id:1 , name:"Nuevo elemento" }
+    { id:1 , name:"Nuevo elemento" },
+    { id:2 , name:"Segundo nuevo elemento" }
   ];
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
