@@ -14,26 +14,14 @@ export class BodyComponent {
   @ViewChild('showElementTask') showElementTask!: ElementRef;
 
   newArrayList : any = [
-    { id:1 , name:"Nuevo elemento", description: "descripcion del primero elemento" },
-    { id:2 , name:"Segundo nuevo elemento", description: "descripcion del segundo elemento" }
+    { id:0 , name:"Nuevo elemento", description: "descripcion del primero elemento" },
+    { id:1 , name:"Segundo nuevo elemento", description: "descripcion del segundo elemento" }
   ];
 
   editId: any;
   editName: any;
   editDescription: any;
   
-  
-  process : any = [];
-
-  done : any = [];
-
-  todo = [
-    "Diseñar la estructura de la aplicación",
-    "Crear el esqueleto HTML",
-    "Estilizar la interfaz de usuario (UI) con CSS",
-    "Implementar la lógica de la aplicación con JavaScript",
-  ];
-
   
 
   
@@ -85,6 +73,7 @@ export class BodyComponent {
       name: "Nueva Tarea",
       description:"Descripcion de la nueva tarea"
     });
+    console.log(this.newArrayList);
   }
 
 }
