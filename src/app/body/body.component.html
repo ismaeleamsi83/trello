@@ -5,9 +5,9 @@
 <div >
     
       
-    <!-- Probar con array  de objetos -->
-
-    <div class="example-container">
+    
+<!-- funciona pero prueba crear abajo new list -->
+    <!-- <div class="example-container">
       <span style="margin-left: 0.5rem;">Lista de tareas</span>
     
       <div>
@@ -25,7 +25,36 @@
           
         }
       </div>
+   </div> -->
+   
+   <!-- @for(item  of newArrayList2[0]; track $index){
+      
+   } -->
+  
+   @for(indice of indiceList; track indice){
+   <div class="example-container">
+    <span style="margin-left: 0.5rem;">Lista de tareas</span>
+  
+    <div>
+      <button (click)="newTask()" style="cursor: pointer; background-color: #005C91; padding: 4px 1rem; color: white; width: 100%; margin-top: 8px;"><span>Crea nueva Tarea</span></button>
+    </div>
+    <div
+      cdkDropList
+      #newList="cdkDropList"
+      [cdkDropListData]="newArrayList2"
+      [cdkDropListConnectedTo]="[]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of newArrayList2[indice]; track item) {
+        <div (click)="editTask(item, indice)" class="example-box" cdkDrag>{{item.name}}</div>
+        
+      }
+    </div>
   </div>
+  }
+
+
+
 
 </div>
 
