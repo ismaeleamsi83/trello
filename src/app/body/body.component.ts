@@ -17,7 +17,11 @@ export class BodyComponent {
     { id:1 , name:"Nuevo elemento", description: "descripcion del primero elemento" },
     { id:2 , name:"Segundo nuevo elemento", description: "descripcion del segundo elemento" }
   ];
-  editTaskSelect: any = [{}];
+
+  editId: any;
+  editName: any;
+  editDescription: any;
+  
   
   process : any = [];
 
@@ -51,7 +55,10 @@ export class BodyComponent {
     console.log("editando tarea: ",  editTask);
     this.showElementTask.nativeElement.classList.remove('hideTask');
     this.showElementTask.nativeElement.classList.add('showTask');
-    this.editTaskSelect=editTask;
+    
+    this.editId = editTask.id;
+    this.editName = editTask.name;
+    this.editDescription = editTask.description;
   }
 
   closeTask(){
@@ -60,15 +67,24 @@ export class BodyComponent {
     this.showElementTask.nativeElement.classList.add('hideTask');
   }
 
-  saveTask(task: any){
-    console.log(task);
+  saveTask(){
     this.newArrayList.map((e:any)=>{
-      if(e.id == this.editTaskSelect.id ){
-          e.name = task.name;
-          e.description = task.description;
+      if(e.id == this.editId ){
+          e.name = this.editName;
+          e.description = this.editDescription;
       }
     });
     this.closeTask();
+  }
+
+
+  newTask(){
+    console.log("crear nueva tarea");
+    this.newArrayList.push({
+      id: this.newArrayList.length,
+      name: "Nueva Tarea",
+      description:"Descripcion de la nueva tarea"
+    });
   }
 
 }

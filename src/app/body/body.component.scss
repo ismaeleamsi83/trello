@@ -77,3 +77,42 @@
     display: block;
 
   }
+
+
+
+
+
+  .button-save-task{
+    cursor: pointer;
+    display: inline-flex; 
+    padding: 0.2rem 2rem;
+    background-color: #005C91;
+    color:white;
+    position: relative;
+    overflow: hidden;
+    transition: 1.4 ease all;
+  }
+
+  .button-save-task span{
+    position: relative;
+    z-index: 2;
+  }
+
+  .button-save-task::after {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background-color: rgb(97, 184, 184);
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: 0.4s ease all;
+  }
+
+  .button-save-task:hover::after {
+    left: 0;
+    opacity: 0.5;
+  }
+
+  
