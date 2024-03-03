@@ -30,9 +30,14 @@ export class BodyComponent implements OnInit {
     "tercero progress"
   ];
 
+  // data = [
+  //   this.todo,
+  //   this.progress
+  // ];
+
   data = [
-    this.todo,
-    this.progress
+    { name: "titulo de la lista", data:  this.todo },
+    { name: "otro titulo", data: this.progress}
   ];
 
   idListCount = 0;
@@ -77,12 +82,12 @@ export class BodyComponent implements OnInit {
 
   
   ngOnInit(): void {
-    console.log(this.newArrayList2);
+   
   }
 
   
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -161,11 +166,16 @@ export class BodyComponent implements OnInit {
 
 
   newList(){
-    const newList = [
+    const otherList = [
       "nueva",
       "otro"
     ];
-    this.data.push(newList);
+
+    const newList = [
+      { name: "titulo de otra lista", data:  otherList }
+    ]
+    
+    this.data.push({ name: "titulo de otra lista", data:  otherList});
     console.log(newList);
     this.idListCount++;
   }
