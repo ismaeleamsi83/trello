@@ -8,9 +8,10 @@
 <div>
   <div cdkDropListGroup style="display: flex; flex-wrap: wrap;">
     @for (column of data; track $index) {
-    <div style="display: flex; background-color: beige; flex-direction: column;">
-      <h2>Titulo Lista</h2>
-      <div cdkDropList [cdkDropListData]="column" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div style="display: flex; flex-direction: column;">
+      
+      <div cdkDropList [cdkDropListData]="column" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem;">
+        <h2 style="margin-left: 1.5rem; margin-top: 1rem;">Titulo Lista</h2>
         <div class="example-container">
           @for (item of column; track $index) {
             <div cdkDrag class="example-box">
@@ -22,7 +23,8 @@
       </div>
     </div>
     }
-  </div></div>   
+  </div>
+</div>   
 
 
 

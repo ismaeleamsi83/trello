@@ -3,6 +3,7 @@ import { Taskarray } from '../interfaces/taskarray';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CdkDrag,CdkDropList, CdkDragDrop,CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 import { FormsModule } from '@angular/forms';
+import { concat } from 'rxjs';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class BodyComponent implements OnInit {
     this.todo,
     this.progress
   ];
+
+  idListCount = 0;
 
 
   //nuevo crear nueva lista
@@ -156,15 +159,25 @@ export class BodyComponent implements OnInit {
 
 
   newList(){
-    console.log("creo nueva lista");
-    const newList: Tasklist = {
-     id: this.idNewList, 
-     name: "Nueva lista" 
-    };
+    // console.log("creo nueva lista");
+    // const newList: Tasklist = {
+    //  id: this.idNewList, 
+    //  name: "Nueva lista" 
+    // };
+    // console.log(newList);
+    // this.newListArray.push(newList);
+    // this.idNewList++;
+    // console.log(this.newListArray);
+
+
+    //const newList = "newListArray" + this.idListCount;
+    const newList = [
+      "nueva",
+      "otro"
+    ];
+    this.data.push(newList);
     console.log(newList);
-    this.newListArray.push(newList);
-    this.idNewList++;
-    console.log(this.newListArray);
+    this.idListCount++;
   }
 
 }
