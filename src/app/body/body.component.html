@@ -10,8 +10,9 @@
     @for (column of data; track $index) {
     <div style="display: flex; flex-direction: column;">
       
-      <div cdkDropList [cdkDropListData]="column" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem;">
+      <div cdkDropList [cdkDropListData]="column" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative;">
         <h2 style="margin-left: 1.5rem; margin-top: 1rem;">Titulo Lista</h2>
+        <span style="position: absolute; right: 1rem; top: 0; font-size: 2rem; cursor: pointer;" (click)="removeList($index)">x</span>
         <div class="example-container">
           @for (item of column; track $index) {
             <div cdkDrag class="example-box">

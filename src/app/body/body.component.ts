@@ -158,19 +158,9 @@ export class BodyComponent implements OnInit {
 
 
 
+
+
   newList(){
-    // console.log("creo nueva lista");
-    // const newList: Tasklist = {
-    //  id: this.idNewList, 
-    //  name: "Nueva lista" 
-    // };
-    // console.log(newList);
-    // this.newListArray.push(newList);
-    // this.idNewList++;
-    // console.log(this.newListArray);
-
-
-    //const newList = "newListArray" + this.idListCount;
     const newList = [
       "nueva",
       "otro"
@@ -178,6 +168,12 @@ export class BodyComponent implements OnInit {
     this.data.push(newList);
     console.log(newList);
     this.idListCount++;
+  }
+
+
+  removeList(indice: any){
+    this.data.splice(indice,1);
+    console.log(indice);
   }
 
 }
