@@ -1,17 +1,44 @@
+import { Tasklist } from '../interfaces/tasklist';
+import { Taskarray } from '../interfaces/taskarray';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { CdkDrag,CdkDropList, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
+import { CdkDrag,CdkDropList, CdkDragDrop,CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [CdkDrag, CdkDropList, FormsModule],
+  imports: [CdkDrag, CdkDropList, FormsModule, CdkDropListGroup],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
 export class BodyComponent implements OnInit {
 
   @ViewChild('showElementTask') showElementTask!: ElementRef;
+
+
+  todo = [
+    "primero",
+    "segundo",
+    "tercero"
+  ];
+
+  progress = [
+    "primero progress",
+    "segundo progress",
+    "tercero progress"
+  ];
+
+  data = [
+    this.todo,
+    this.progress
+  ];
+
+
+  //nuevo crear nueva lista
+  idNewList: number = 0;
+  newListArray: any = [];
+
 
   newArrayList : any = [
     { id:0 , name:"Nuevo elemento", description: "descripcion del primero elemento" },
@@ -22,6 +49,7 @@ export class BodyComponent implements OnInit {
   editId: any;
   editName: any;
   editDescription: any;
+
   
   newArrayList2 : any = [
     [
@@ -32,6 +60,11 @@ export class BodyComponent implements OnInit {
       {id:'0', name: "nombre uno de dos", description: "descripcion de la segunda lista"},
       {id:'1', name: "nombre dos de dos", description: "descripcion de la segunda lista"}
     ]
+  ];
+
+  newArrayList5 : any = [
+    {id:'0', idList: 0, name: "nombre lista 0", description: "descripcion de la primera lista"},
+    {id:'1', idList: 1, name: "nombre lista 1", description: "descripcion de la primera lista"}
   ];
 
   indiceList : any = [
@@ -46,7 +79,7 @@ export class BodyComponent implements OnInit {
 
   
 
-  drop(event: CdkDragDrop<any>) {
+  drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -57,6 +90,9 @@ export class BodyComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+  drop2(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.newArrayList5, event.previousIndex, event.currentIndex);
   }
 
   editTask(editTask: any, indice: number){
@@ -99,18 +135,36 @@ export class BodyComponent implements OnInit {
   }
 
 
-  newTask(){
+  newTask(idList: any){
     console.log("crear nueva tarea");
-    this.newArrayList.push({
-      id: this.newArrayList.length,
-      name: "Nueva Tarea",
-      description:"Descripcion de la nueva tarea"
-    });
-    console.log(this.newArrayList);
+    // this.newArrayList5.push({
+    //   id: this.newArrayList5.length,
+    //   idList: idList,
+    //   name: "Nueva Tarea",
+    //   description:"Descripcion de la nueva tarea"
+    // });
+    // console.log(this.newArrayList);
+    let taskNewList : Taskarray = {
+      id: 0,
+      name: "nombre nueva",
+      description: "descripcion nueva"
+    }
   }
 
-  newList(){
 
+
+
+
+  newList(){
+    console.log("creo nueva lista");
+    const newList: Tasklist = {
+     id: this.idNewList, 
+     name: "Nueva lista" 
+    };
+    console.log(newList);
+    this.newListArray.push(newList);
+    this.idNewList++;
+    console.log(this.newListArray);
   }
 
 }

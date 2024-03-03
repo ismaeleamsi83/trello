@@ -1,57 +1,43 @@
 <div style="width: 80%; background-color: #005C91; padding: 1rem; color: white; margin-top: 1px; display: flex; gap: 1rem;">
     <span style="padding-left: 1rem;">Proyecto tenis</span>
-    <button style="background-color: rgb(245, 245, 245); padding: 4px 1rem;"><span>Añadir otra Lista</span></button>
+    <button style="background-color: rgb(245, 245, 245); padding: 4px 1rem;" (click)="newList()"><span>Añadir otra Lista</span></button>
 </div>
 <div >
     
       
-    
-<!-- funciona pero prueba crear abajo new list -->
-    <!-- <div class="example-container">
-      <span style="margin-left: 0.5rem;">Lista de tareas</span>
-    
-      <div>
-        <button (click)="newTask()" style="cursor: pointer; background-color: #005C91; padding: 4px 1rem; color: white; width: 100%; margin-top: 8px;"><span>Crea nueva Tarea</span></button>
+<div>
+  <div cdkDropListGroup style="display: flex; flex-wrap: wrap;">
+    @for (column of data; track $index) {
+    <div style="display: flex; background-color: beige; flex-direction: column;">
+      <h2>Titulo Lista</h2>
+      <div cdkDropList [cdkDropListData]="column" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-container">
+          @for (item of column; track $index) {
+            <div cdkDrag class="example-box">
+              {{item}}
+            </div>
+          }
+
+        </div>
       </div>
-      <div
-        cdkDropList
-        #newList="cdkDropList"
-        [cdkDropListData]="newArrayList"
-        [cdkDropListConnectedTo]="[]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        @for (item of newArrayList; track item) {
-          <div (click)="editTask(item)" class="example-box" cdkDrag>{{item.name}}</div>
-          
-        }
-      </div>
-   </div> -->
-   
-   <!-- @for(item  of newArrayList2[0]; track $index){
-      
-   } -->
-  
-   @for(indice of indiceList; track indice){
-   <div class="example-container">
-    <span style="margin-left: 0.5rem;">Lista de tareas</span>
-  
-    <div>
-      <button (click)="newTask()" style="cursor: pointer; background-color: #005C91; padding: 4px 1rem; color: white; width: 100%; margin-top: 8px;"><span>Crea nueva Tarea</span></button>
     </div>
-    <div
-      cdkDropList
-      #newList="cdkDropList"
-      [cdkDropListData]="newArrayList2"
-      [cdkDropListConnectedTo]="[]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      @for (item of newArrayList2[indice]; track item) {
-        <div (click)="editTask(item, indice)" class="example-box" cdkDrag>{{item.name}}</div>
-        
-      }
-    </div>
-  </div>
-  }
+    }
+  </div></div>   
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
