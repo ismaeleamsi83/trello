@@ -19,15 +19,15 @@ export class BodyComponent implements OnInit {
 
 
   todo = [
-    "primero",
-    "segundo",
-    "tercero"
+    "Diseñar la estructura de navegación.",
+    "Seleccionar las tecnologías y herramientas que se utilizarán.",
+    "Crear wireframes y prototipos de la interfaz de usuario."
   ];
 
   progress = [
-    "primero progress",
-    "segundo progress",
-    "tercero progress"
+    "Configurar el entorno de desarrollo.",
+    "Desarrollar la navegación.",
+    "Desarrollar la autenticación de usuarios."
   ];
 
   // data = [
@@ -36,8 +36,8 @@ export class BodyComponent implements OnInit {
   // ];
 
   data = [
-    { name: "titulo de la lista", data:  this.todo },
-    { name: "otro titulo", data: this.progress}
+    { name: "Lista de tareas", data:  this.todo },
+    { name: "En progreso", data: this.progress}
   ];
 
   idListCount = 0;
@@ -152,18 +152,10 @@ export class BodyComponent implements OnInit {
   }
 
   newTask(idList: any){
-    console.log("crear nueva tarea");
-    console.log(idList);
-    
     this.data.forEach((element:any, index) => {
-      
       if (index === idList){
-        console.log("ok");
-        console.log(element.data);
         element.data.push("Nueva Tarea");
       }
-      
-      
     });
   }
 
@@ -179,7 +171,6 @@ export class BodyComponent implements OnInit {
 
   removeList(indice: any){
     this.data.splice(indice,1);
-    console.log(indice);
   }
 
 }
