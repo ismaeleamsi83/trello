@@ -6,13 +6,17 @@
     
       
 <div cdkDropListGroup>
-  <div cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" style="display: flex;"  [cdkDropListData]="data" (cdkDropListDropped)="onDrop($event)">
+  <div cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" style="display: flex; overflow-x: auto;"  [cdkDropListData]="data" (cdkDropListDropped)="onDrop($event)">
     @for (column of data;  track column; let index = $index) {
-    <div style="display: flex; flex-direction: column;" cdkDrag>
+    <div style="display: flex; flex-direction: column;" >
       
-      <div cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
-        <h2 style="margin-left: 1.5rem; margin-top: 1rem;">{{column.name}}</h2>
-        <span style="position: absolute; right: 1rem; top: 0; font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
+      <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
+        
+        <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
+          <h2>{{column.name}}</h2>
+          <span style="font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
+        </div>
+        
         <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226); cursor: pointer;" (click)="newTask(index)">Añadir nueva Tarea</button>
         <div class="example-container">
           @for (item of column.data; track $index) {
