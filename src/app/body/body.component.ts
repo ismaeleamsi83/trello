@@ -99,9 +99,7 @@ export class BodyComponent implements OnInit {
       );
     }
   }
-  drop2(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.newArrayList5, event.previousIndex, event.currentIndex);
-  }
+  
 
   editTask(editTask: any, indice: number){
     console.log("editando tarea: ",  editTask);
@@ -143,6 +141,16 @@ export class BodyComponent implements OnInit {
   }
 
 
+
+
+
+
+
+
+  removeTask(idList:any, idItem: any){
+    this.data[idList].data.splice(idItem,1);
+  }
+
   newTask(idList: any){
     console.log("crear nueva tarea");
     console.log(idList);
@@ -159,27 +167,15 @@ export class BodyComponent implements OnInit {
     });
   }
 
-
-
-
-
-
-
   newList(){
     const otherList = [
-      "nueva",
-      "otro"
+      "Nueva Tarea",
+      "Nueva Tarea"
     ];
 
-    const newList = [
-      { name: "titulo de otra lista", data:  otherList }
-    ]
-    
-    this.data.push({ name: "titulo de otra lista", data:  otherList});
-    console.log(newList);
+    this.data.push({ name: "Nueva lista", data:  otherList});
     this.idListCount++;
   }
-
 
   removeList(indice: any){
     this.data.splice(indice,1);

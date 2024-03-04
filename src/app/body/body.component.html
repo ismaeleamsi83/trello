@@ -1,23 +1,24 @@
 <div style="width: 80%; background-color: #005C91; padding: 1rem; color: white; margin-top: 1px; display: flex; gap: 1rem;">
     <span style="padding-left: 1rem;">Proyecto tenis</span>
-    <button style="background-color: rgb(245, 245, 245); padding: 4px 1rem;" (click)="newList()"><span>Añadir otra Lista</span></button>
+    <button style="background-color: rgb(245, 245, 245); padding: 4px 1rem;" (click)="newList()"><span>Añadir nueva Lista</span></button>
 </div>
 <div >
     
       
 <div>
   <div cdkDropListGroup style="display: flex; flex-wrap: wrap;">
-    @for (column of data; track $index) {
+    @for (column of data;  track column; let index = $index) {
     <div style="display: flex; flex-direction: column;">
       
       <div cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
         <h2 style="margin-left: 1.5rem; margin-top: 1rem;">{{column.name}}</h2>
-        <span style="position: absolute; right: 1rem; top: 0; font-size: 2rem; cursor: pointer;" (click)="removeList($index)">x</span>
-        <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0;" (click)="newTask($index)">Añade nueva tarea</button>
+        <span style="position: absolute; right: 1rem; top: 0; font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
+        <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0;" (click)="newTask(index)">Añadir nueva tarea</button>
         <div class="example-container">
           @for (item of column.data; track $index) {
             <div cdkDrag class="example-box">
-              {{item}}
+              <span>{{item}}</span>
+              <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">x</span>
             </div>
           }
 
