@@ -145,18 +145,18 @@ export class BodyComponent implements OnInit {
 
   newTask(idList: any){
     console.log("crear nueva tarea");
-    // this.newArrayList5.push({
-    //   id: this.newArrayList5.length,
-    //   idList: idList,
-    //   name: "Nueva Tarea",
-    //   description:"Descripcion de la nueva tarea"
-    // });
-    // console.log(this.newArrayList);
-    let taskNewList : Taskarray = {
-      id: 0,
-      name: "nombre nueva",
-      description: "descripcion nueva"
-    }
+    console.log(idList);
+    
+    this.data.forEach((element:any, index) => {
+      
+      if (index === idList){
+        console.log("ok");
+        console.log(element.data);
+        element.data.push("Nueva Tarea");
+      }
+      
+      
+    });
   }
 
 
