@@ -6,7 +6,7 @@
     
       
 <div cdkDropListGroup>
-  <div cdkDropListGroup style="display: flex; flex-wrap: wrap;" cdkDropList [cdkDropListData]="data" (cdkDropListDropped)="drop($event)">
+  <div cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" style="display: flex;"  [cdkDropListData]="data" (cdkDropListDropped)="onDrop($event)">
     @for (column of data;  track column; let index = $index) {
     <div style="display: flex; flex-direction: column;" cdkDrag>
       
