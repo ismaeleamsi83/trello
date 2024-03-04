@@ -5,20 +5,22 @@
 <div >
     
       
-<div>
-  <div cdkDropListGroup style="display: flex; flex-wrap: wrap;">
+<div cdkDropListGroup>
+  <div cdkDropListGroup style="display: flex; flex-wrap: wrap;" cdkDropList [cdkDropListData]="data" (cdkDropListDropped)="drop($event)">
     @for (column of data;  track column; let index = $index) {
-    <div style="display: flex; flex-direction: column;">
+    <div style="display: flex; flex-direction: column;" cdkDrag>
       
       <div cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
         <h2 style="margin-left: 1.5rem; margin-top: 1rem;">{{column.name}}</h2>
         <span style="position: absolute; right: 1rem; top: 0; font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
-        <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226)" (click)="newTask(index)">Añadir nueva Tarea</button>
+        <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226); cursor: pointer;" (click)="newTask(index)">Añadir nueva Tarea</button>
         <div class="example-container">
           @for (item of column.data; track $index) {
             <div cdkDrag class="example-box">
               <span style="padding-right: 4px;">{{item}}</span>
-              <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">x</span>
+              <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">
+                <img src="../../assets/images/trash.png" alt="" style="width: 18px;" />
+              </span>
             </div>
           }
 
