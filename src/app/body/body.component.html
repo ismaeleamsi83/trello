@@ -21,7 +21,7 @@
         <div class="example-container">
           @for (item of column.data; track $index) {
             <div cdkDrag class="example-box">
-              <span style="padding-right: 4px;">{{item}}</span>
+              <span style="padding-right: 4px;" (click)="editTask(index, $index)">{{item}}</span>
               <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">
                 <img src="../../assets/images/trash.png" alt="" style="width: 18px;" />
               </span>
