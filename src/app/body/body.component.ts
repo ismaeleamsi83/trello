@@ -16,7 +16,7 @@ import { concat } from 'rxjs';
 export class BodyComponent implements OnInit {
 
   @ViewChild('showElementTask') showElementTask!: ElementRef;
-
+  @ViewChild('nameList') nameList!: ElementRef;
 
   todo = [
     "Diseñar la estructura de navegación.",
@@ -37,6 +37,13 @@ export class BodyComponent implements OnInit {
   ];
 
   idListCount = 0;
+
+  
+  clickEditList = [
+    false,
+    false
+  ]
+  
 
 
   //nuevo crear nueva lista
@@ -145,13 +152,20 @@ export class BodyComponent implements OnInit {
       "Nueva Tarea",
       "Nueva Tarea"
     ];
-
+    this.clickEditList.push(false);
     this.data.push({ name: "Nueva lista", data:  otherList});
     this.idListCount++;
   }
 
+  saveList(idList: any){
+    console.log(idList);
+    console.log(this.nameList.nativeElement.value);
+    this.data[idList].name = this.nameList.nativeElement.value;   
+  }
+
   removeList(indice: any){
     this.data.splice(indice,1);
+    this.clickEditList.splice(indice, 1);
   }
 
 }

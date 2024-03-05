@@ -13,7 +13,13 @@
       <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
         
         <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
-          <h2>{{column.name}}</h2>
+          @if (clickEditList[index]) {
+            <input type="text" [value]="column.name" #nameList>
+            <img (click)="saveList(index)" src="../../assets/images/save.png" alt="" style="width: 22px;" (click)="clickEditList[index] = !clickEditList[index]">
+          }@else{
+            <h2>{{column.name}}</h2>
+            <img src="../../assets/images/edit.png" alt="" style="width: 22px;" (click)="clickEditList[index] = !clickEditList[index]">
+          }
           <span style="font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
         </div>
         
