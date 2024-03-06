@@ -4,12 +4,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CdkDrag,CdkDropList, CdkDragDrop,CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'; 
 import { FormsModule } from '@angular/forms';
 import { concat } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [CdkDrag, CdkDropList, FormsModule, CdkDropListGroup],
+  imports: [CdkDrag, CdkDropList, FormsModule, CdkDropListGroup, CommonModule],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
@@ -17,6 +18,7 @@ export class BodyComponent implements OnInit {
 
   @ViewChild('showElementTask') showElementTask!: ElementRef;
   @ViewChild('nameList') nameList!: ElementRef;
+  @ViewChild('removeTaskAnimate') removeTaskAnimate!: ElementRef;
 
   todo = [
     "Diseñar la estructura de navegación.",
@@ -44,31 +46,21 @@ export class BodyComponent implements OnInit {
     false
   ]
   
-
-
-  //nuevo crear nueva lista
-  idNewList: number = 0;
-  newListArray: any = [];
-
-
-  newArrayList : any = [
-    { id:0 , name:"Nuevo elemento", description: "descripcion del primero elemento" },
-    { id:1 , name:"Segundo nuevo elemento", description: "descripcion del segundo elemento" }
-  ];
-
+  // Editar
   editIdList: any;
   editIdTask: any;
   editName: any;
   editDescription: any;
 
-  
-  
+  // Animar eliminar lista
+  isClicked: boolean = false;
+  clickedList: number = -1;
 
-  indiceList : any = [
-    0,
-    1
-  ]
-
+  // Animar eliminar tarea
+  isClickedTask: boolean = false;
+  clickedTask: number = -1;
+  clickedListTask: number = -1;
+  
   
   ngOnInit(): void {
    
@@ -102,12 +94,11 @@ export class BodyComponent implements OnInit {
   
 
   editTask(idList: any, indice: number){
-    console.log("id List: ",  idList);
-    console.log("id Task: ", indice);
+    
     this.showElementTask.nativeElement.classList.remove('hideTask');
     this.showElementTask.nativeElement.classList.add('showTask');
     
-    console.log(this.data[idList].data[indice]);
+    
     this.editName = this.data[idList].data[indice];
     this.editIdList = idList;
     this.editIdTask = indice;
@@ -118,25 +109,35 @@ export class BodyComponent implements OnInit {
   }
 
   closeTask(){
-    console.log("cerrando tarea");
+    
     this.showElementTask.nativeElement.classList.remove('showTask');
     this.showElementTask.nativeElement.classList.add('hideTask');
   }
 
+  //Crud de tareas
   saveTask(){
     this.data[this.editIdList].data[this.editIdTask] = this.editName;
     this.closeTask();
   }
 
-
-
-
-
-
-
-
   removeTask(idList:any, idItem: any){
-    this.data[idList].data.splice(idItem,1);
+    //this.removeTaskAnimate.nativeElement.style.backgroundColor = "red";
+    // this.isClicked = true;
+    // this.clickedList = idList;
+    // this.clickedIndex = idItem;
+    this.isClickedTask = true;
+    this.clickedListTask = idList;
+    this.clickedTask = idItem;
+    setTimeout(() => {
+      // this.isClicked= false;
+      // this.clickedList = -1;
+      // this.clickedIndex = -1;
+      this.isClickedTask = false;
+      this.clickedListTask = -1;
+      this.clickedTask = -1;
+      this.data[idList].data.splice(idItem,1);
+    }, 500);
+    //this.data[idList].data.splice(idItem,1);
   }
 
   newTask(idList: any){
@@ -147,6 +148,8 @@ export class BodyComponent implements OnInit {
     });
   }
 
+
+  //Crud de listas
   newList(){
     const otherList = [
       "Nueva Tarea",
@@ -158,14 +161,18 @@ export class BodyComponent implements OnInit {
   }
 
   saveList(idList: any){
-    console.log(idList);
-    console.log(this.nameList.nativeElement.value);
     this.data[idList].name = this.nameList.nativeElement.value;   
   }
 
   removeList(indice: any){
-    this.data.splice(indice,1);
-    this.clickEditList.splice(indice, 1);
+    this.isClicked = true;
+    this.clickedList = indice;
+    setTimeout(() => {
+      this.isClicked= false;
+      this.clickedList = -1;
+      this.data.splice(indice,1);
+      this.clickEditList.splice(indice, 1);
+    }, 500);
   }
 
 }

@@ -1,64 +1,44 @@
-<div style="width: 80%; background-color: #005C91; padding: 1rem; color: white; margin-top: 1px; display: flex; gap: 1rem;">
-    <span style="padding-left: 1rem;">Proyecto tenis</span>
-    <button style="background-color: rgb(245, 245, 245); padding: 4px 1rem; border: none;" (click)="newList()"><span>Añadir nueva Lista</span></button>
+<div class="container-proyecto">
+    <span class="proyecto-title">Proyecto Actual</span>
+    <button (click)="newList()"><span>Añadir nueva Lista</span></button>
 </div>
-<div >
-    
-      
-<div cdkDropListGroup>
-  <div cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" style="display: flex; overflow-x: auto;"  [cdkDropListData]="data" (cdkDropListDropped)="onDrop($event)">
-    @for (column of data;  track column; let index = $index) {
-    <div style="display: flex; flex-direction: column;" >
-      
-      <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;">
-        
-        <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
-          @if (clickEditList[index]) {
-            <input type="text" [value]="column.name" #nameList>
-            <img (click)="saveList(index)" src="../../assets/images/save.png" alt="" style="width: 22px;" (click)="clickEditList[index] = !clickEditList[index]">
-          }@else{
-            <h2>{{column.name}}</h2>
-            <img src="../../assets/images/edit.png" alt="" style="width: 22px;" (click)="clickEditList[index] = !clickEditList[index]">
-          }
-          <span style="font-size: 2rem; cursor: pointer;" (click)="removeList(index)">x</span>
-        </div>
-        
-        <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226); cursor: pointer;" (click)="newTask(index)">Añadir nueva Tarea</button>
-        <div class="example-container">
-          @for (item of column.data; track $index) {
-            <div cdkDrag class="example-box">
-              <span style="padding-right: 4px;" (click)="editTask(index, $index)">{{item}}</span>
-              <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">
-                <img src="../../assets/images/trash.png" alt="" style="width: 18px;" />
-              </span>
-            </div>
-          }
 
+<div>
+  <div cdkDropListGroup>
+    <div cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" style="display: flex; overflow-x: auto; padding-bottom: 2rem;"  [cdkDropListData]="data" (cdkDropListDropped)="onDrop($event)">
+      @for (column of data;  track column; let index = $index) {
+      <div style="display: flex; flex-direction: column;" >
+        
+        <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;" [ngClass]="{ 'click-animation': isClicked && clickedList === index }">
+          
+          <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
+            @if (clickEditList[index]) {
+              <input type="text" [value]="column.name" #nameList>
+              <img (click)="saveList(index)" src="../../assets/images/save.png" alt="" style="width: 18px;" (click)="clickEditList[index] = !clickEditList[index]">
+            }@else{
+              <h2>{{column.name}}</h2>
+              <img src="../../assets/images/edit.png" alt="" style="width: 18px;" (click)="clickEditList[index] = !clickEditList[index]">
+            }
+            <span style="font-size: 2rem; cursor: pointer; padding-bottom: 8px;" (click)="removeList(index)">x</span>
+          </div>
+          
+          <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226); cursor: pointer;" (click)="newTask(index)">Añadir nueva Tarea</button>
+          <div class="example-container">
+            @for (item of column.data; track $index) {
+              <div cdkDrag class="example-box"  #removeTaskAnimate [ngClass]="{ 'click-animation-task': isClickedTask && clickedListTask === index && clickedTask === $index}">
+                <span style="padding-right: 4px;" (click)="editTask(index, $index)">{{item}}</span>
+                <span (click)="removeTask(index, $index)" style="cursor: pointer; font-size: 1.5rem;">
+                  <img src="../../assets/images/trash.png" alt="" style="width: 18px;" />
+                </span>
+              </div>
+            }
+
+          </div>
         </div>
       </div>
+      }
     </div>
-    }
-  </div>
-</div>   
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>   
 </div>
 
 <div #showElementTask class="hideTask">

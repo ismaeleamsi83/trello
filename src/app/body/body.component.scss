@@ -19,7 +19,9 @@
     border-radius: 4px;
     overflow: hidden;
     display: block;
-    
+    h2{
+      font-size: 1.2rem;
+    }
   }
   
   .example-box {
@@ -117,4 +119,56 @@
     opacity: 0.5;
   }
 
+
+
+.container-proyecto{
+  width: 80%; 
+  background-color: #005C91; 
+  padding: 1rem; 
+  color: white; 
+  margin-top: 1px; 
+  display: flex; 
+  gap: 1rem;
+  .proyecto-title{
+    padding-left: 1rem;
+  }
+  button{
+    background-color: rgb(245, 245, 245); 
+    padding: 4px 1rem; 
+    border: none;
+    cursor: pointer;
+  }
+}
+
+
+
+
+// Animacion para eliminar listas
+@keyframes clickAnimation {
+  0% { transform: scale(1); }
   
+  50% { transform: scale(1.05); }
+  
+  100% { transform: scale(0.50); }
+}
+
+/* Aplica la animación a cualquier elemento con la clase .click-animation */
+.click-animation {
+  animation: clickAnimation 0.55s ease;
+}
+
+
+// Animacion para eliminar tareas
+
+@keyframes clickAnimation-task {
+  0% { transform: scale(1); }
+  
+  50% { transform: scale(1.05); background-color: rgb(69, 164, 228, 0.4);}
+  
+  100% { transform: scale(0.50); }
+}
+
+/* Aplica la animación a cualquier elemento con la clase .click-animation */
+.click-animation-task {
+  animation: clickAnimation-task 0.55s ease;
+}
