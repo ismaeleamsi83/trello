@@ -33,10 +33,26 @@ export class BodyComponent implements OnInit {
   ];
 
 
-  data = [
-    { name: "Lista de tareas", data:  this.todo },
-    { name: "En progreso", data: this.progress}
+  todoArray = [
+    {title: "Configurar el entorno de desarrollo.", description: "aqui va la descripcion uno"},
+    {title: "Diseñar la estructura de navegación.", description: "aqui va la descripcion dos"},
+    {title: "Desarrollar la autenticación de usuarios.", description: "aqui va la descripcion tres"}
   ];
+
+  // Este funciona
+  // data = [
+  //   { name: "Lista de tareas", data:  this.todo},
+  //   { name: "En progreso", data: this.progress}
+  // ];
+
+  // Probar este
+
+  data = [
+      { name: "Lista de tareas", data:  this.todoArray}
+  ];
+
+
+
 
   idListCount = 0;
 
@@ -99,7 +115,8 @@ export class BodyComponent implements OnInit {
     this.showElementTask.nativeElement.classList.add('showTask');
     
     
-    this.editName = this.data[idList].data[indice];
+    this.editName = this.data[idList].data[indice].title;
+    this.editDescription = this.data[idList].data[indice].description;
     this.editIdList = idList;
     this.editIdTask = indice;
     // this.editIdList = indice;
@@ -116,7 +133,8 @@ export class BodyComponent implements OnInit {
 
   //Crud de tareas
   saveTask(){
-    this.data[this.editIdList].data[this.editIdTask] = this.editName;
+    this.data[this.editIdList].data[this.editIdTask].title = this.editName;
+    this.data[this.editIdList].data[this.editIdTask].description = this.editDescription;
     this.closeTask();
   }
 
@@ -139,7 +157,7 @@ export class BodyComponent implements OnInit {
   newTask(idList: any){
     this.data.forEach((element:any, index) => {
       if (index === idList){
-        element.data.push("Nueva Tarea");
+        element.data.push({title: "nueva tarea", description: "nueva descripcion"});
       }
     });
   }
@@ -148,12 +166,12 @@ export class BodyComponent implements OnInit {
   //Crud de listas
   newList(){
     const otherList = [
-      "Nueva Tarea",
-      "Nueva Tarea"
+      {title: "Configurar nuevo el entorno de desarrollo.", description: "aqui va la descripcion nuevoo"},
     ];
     this.clickEditList.push(false);
-    this.data.push({ name: "Nueva lista", data:  otherList});
+  //   this.data.push({ name: "Nueva lista", data:  otherList});
     this.idListCount++;
+    this.data.push({ name: "Nueva de tareas", data:  otherList });
   }
 
   saveList(idList: any){
