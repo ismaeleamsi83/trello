@@ -9,7 +9,7 @@
       @for (column of data;  track column; let index = $index) {
       <div style="display: flex; flex-direction: column;" >
         
-        <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column; overflow-y: auto; max-height: 80vh;" [ngClass]="{ 'click-animation': isClicked && clickedList === index }">
+        <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column; " [ngClass]="{ 'click-animation': isClicked && clickedList === index }">
           
           <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
             @if (clickEditList[index]) {
@@ -23,7 +23,7 @@
           </div>
           
           <button style="margin: 1rem 1rem 0 1rem; padding: 4px 0; border: none; border-radius: 4px; background-color: #005C91; color: rgb(226, 226, 226); cursor: pointer;" (click)="newTask(index)">Añadir nueva Tarea</button>
-          <div class="example-container">
+          <div class="example-container" style="overflow-y: auto; max-height: 60vh;">
             @for (item of column.data; track $index) {
               <div cdkDrag class="example-box"  #removeTaskAnimate [ngClass]="{ 'click-animation-task': isClickedTask && clickedListTask === index && clickedTask === $index}">
                 <span style="padding-right: 4px;" (click)="editTask(index, $index)">{{item.title}}</span>
