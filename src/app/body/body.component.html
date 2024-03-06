@@ -9,7 +9,7 @@
       @for (column of data;  track column; let index = $index) {
       <div style="display: flex; flex-direction: column;" >
         
-        <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column;" [ngClass]="{ 'click-animation': isClicked && clickedList === index }">
+        <div cdkDrag cdkDropList [cdkDropListData]="column.data" class="example-list" (cdkDropListDropped)="drop($event)" style="border-radius: 8px; margin-left: 1rem; position: relative; display: flex; flex-direction: column; overflow-y: auto; max-height: 80vh;" [ngClass]="{ 'click-animation': isClicked && clickedList === index }">
           
           <div style="margin: 0 1rem;display: flex; flex-direction: row;justify-content: space-between; align-items: center;">
             @if (clickEditList[index]) {
@@ -42,7 +42,7 @@
 </div>
 
 <div #showElementTask class="hideTask">
-    <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 400px; max-height: 400px; background-color: aliceblue; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+    <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 400px; max-height: 400px; background-color: #F1F2F4; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
       
         <button (click)="closeTask()" style="background-color: transparent;cursor: pointer;position: absolute;top:8px; right: 12px; border: none; font-size: 1.2rem;">X</button>
         <span style="margin-top: 2rem;">Título</span> 

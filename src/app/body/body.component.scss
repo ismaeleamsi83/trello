@@ -7,7 +7,7 @@
     display: inline-block;
     vertical-align: top;
     padding: 0.5rem;
-    background-color: #F1F2F4;
+    background-color: #ffffff;
     border-radius: 0.5rem;
   }
   
@@ -15,12 +15,13 @@
     margin-top: 1rem;
     border: solid 1px #ccc;
     min-height: 60px;
-    background: rgb(225,229,238, 0.6);
+    background: #F1F2F4;
     border-radius: 4px;
     overflow: hidden;
     display: block;
     h2{
       font-size: 1.1rem;
+      font-weight: 400;
     }
   }
   
@@ -36,7 +37,9 @@
     cursor: move;
     background: rgb(162, 233, 255, 0.5);
     font-size: 14px;
+    border-radius: 8px;
   }
+
   
   .cdk-drag-preview {
     box-sizing: border-box;
@@ -137,6 +140,10 @@
     padding: 4px 1rem; 
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 4px #004974;
+  }
+  button:hover{
+    transform: translateY(2px);
   }
 }
 
