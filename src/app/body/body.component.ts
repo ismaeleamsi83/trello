@@ -121,23 +121,19 @@ export class BodyComponent implements OnInit {
   }
 
   removeTask(idList:any, idItem: any){
-    //this.removeTaskAnimate.nativeElement.style.backgroundColor = "red";
-    // this.isClicked = true;
-    // this.clickedList = idList;
-    // this.clickedIndex = idItem;
+    this.removeTaskAnimate.nativeElement.classList.remove('click-animation-insert-task');
+    
     this.isClickedTask = true;
     this.clickedListTask = idList;
     this.clickedTask = idItem;
     setTimeout(() => {
-      // this.isClicked= false;
-      // this.clickedList = -1;
-      // this.clickedIndex = -1;
+      
       this.isClickedTask = false;
       this.clickedListTask = -1;
       this.clickedTask = -1;
       this.data[idList].data.splice(idItem,1);
     }, 500);
-    //this.data[idList].data.splice(idItem,1);
+    
   }
 
   newTask(idList: any){
