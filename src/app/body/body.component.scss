@@ -208,3 +208,12 @@
   background-color: #0079BF;
   color: #F1F2F4;
 }
+
+
+
+#removeTask{
+  visibility: hidden;
+}
+#task:hover #removeTask{
+  visibility: visible;
+}
