@@ -1,7 +1,7 @@
 
 
 .example-container {
-    width: 280px;
+    width: 260px;
     max-width: 100%;
     margin: 2rem 1rem 1rem 1rem;
     display: inline-block;
@@ -194,4 +194,17 @@
 }
 * {
   scrollbar-width: thin;
+}
+
+
+.addComment:hover{
+  transition: all 0.7s cubic-bezier(0.645, 0.045, 0.085, 0.740);
+  opacity: 0.8;
+  cursor: pointer;
+}
+.addComment{
+  padding: 4px 0 6px 0;
+  border: none;
+  background-color: #0079BF;
+  color: #F1F2F4;
 }

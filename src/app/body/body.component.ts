@@ -166,8 +166,11 @@ export class BodyComponent implements OnInit {
   }
 
   addNewComment(){
-    this.data[this.editIdList].data[this.editIdTask].comment.push(this.newComment);
-    this.newComment = "";
+    if(this.newComment  !== undefined && this.newComment.trim() !== '' ){
+      this.data[this.editIdList].data[this.editIdTask].comment.push(this.newComment);
+      this.newComment = "";
+    }
+    
   }
 
 
@@ -195,6 +198,10 @@ export class BodyComponent implements OnInit {
       this.data.splice(indice,1);
       this.clickEditList.splice(indice, 1);
     }, 500);
+  }
+
+  getCurrentDate():string{
+    return new Date().toLocaleDateString();
   }
 
 }

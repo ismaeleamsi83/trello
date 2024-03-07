@@ -42,7 +42,7 @@
 </div>
 
 <div #showElementTask class="hideTask">
-    <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 400px; max-height: 600px; background-color: #F1F2F4; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+    <div style="border-radius: 8px;display: flex;flex-direction: column;padding: 1rem 2rem; max-width: 600px; max-height: 600px; background-color: #F1F2F4; position: absolute;top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
       
         <button (click)="closeTask()" style="background-color: transparent;cursor: pointer;position: absolute;top:8px; right: 12px; border: none; font-size: 1.2rem;">X</button>
         <span style="margin-top: 2rem;">Título</span> 
@@ -53,14 +53,14 @@
         <br>
         <span>Comentario</span>
         <textarea name="comment" id="comment" cols="30" rows="3" [(ngModel)]="newComment"></textarea>
-        <button (click)="addNewComment()">Agregar comentario</button>
+        <button (click)="addNewComment()" class="addComment"><span>Agregar comentario</span></button>
         @if (editComments && !undefined) {
           <span style="margin-top: 1rem;">Comentarios</span>
           <div style="overflow-y: auto; max-height: 150px;">
           @for (comment of editComments; track $index) {
-            <div style="font-size: 12px;margin-top: 8px; width: 100%; background-color: aliceblue; padding: 4px;">
-              <p>Pepito</p>
-              <p>{{comment}}</p>
+            <div style="font-size: 12px;margin-top: 8px; width: 100%; padding: 4px;">
+              <p>Pepito {{getCurrentDate()}}</p>
+              <p style="background-color: white; padding: 4px;">{{comment}}</p>
             </div>
           }
          </div>
