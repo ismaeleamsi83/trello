@@ -1,7 +1,7 @@
 
 
 .example-container {
-    width: 250px;
+    width: 280px;
     max-width: 100%;
     margin: 2rem 1rem 1rem 1rem;
     display: inline-block;
@@ -125,7 +125,7 @@
 
 
 .container-proyecto{
-  width: 80%; 
+  max-width: 80%; 
   background-color: #005C91; 
   padding: 1rem; 
   color: white; 
@@ -181,3 +181,17 @@
 }
 
 
+
+
+::-webkit-scrollbar {
+  width: 10px; /* Ancho del scrollbar */
+}
+::-webkit-scrollbar-track {
+  background: #E3E5EA; /* Color del fondo del scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background: #C4C9D2; /* Color del thumb (la parte móvil) del scrollbar */
+}
+* {
+  scrollbar-width: thin;
+}

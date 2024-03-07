@@ -34,9 +34,9 @@ export class BodyComponent implements OnInit {
 
 
   todoArray = [
-    {title: "Configurar el entorno de desarrollo.", description: "aqui va la descripcion uno"},
-    {title: "Diseñar la estructura de navegación.", description: "aqui va la descripcion dos"},
-    {title: "Desarrollar la autenticación de usuarios.", description: "aqui va la descripcion tres"}
+    {title: "Configurar el entorno de desarrollo.", description: "Preparar las herramientas y configuraciones necesarias para desarrollar software de manera eficiente y efectiva. Esto incluye la instalación y configuración de editores de código, entornos de ejecución, herramientas de control de versiones, dependencias y cualquier otro software relevante para el proyecto.", comment: ["comentario de prueba"]},
+    {title: "Diseñar la estructura de navegación.", description: "Crear un plano o mapa que define cómo los usuarios interactuarán y se moverán a través de un sistema, aplicación web o sitio web. Esto incluye la organización y disposición de los elementos de navegación, como menús, enlaces, botones y otras herramientas de navegación. ", comment: ["comentario de prueba"]},
+    {title: "Desarrollar la autenticación de usuarios.", description: "Implementar un sistema que permita a los usuarios confirmar su identidad antes de acceder a recursos o funcionalidades de una aplicación o sistema. Este proceso generalmente incluye la creación de formularios de inicio de sesión donde los usuarios ingresan sus credenciales (como nombre de usuario y contraseña) y la validación de estas credenciales contra una base de datos segura.", comment: ["comentario de prueba"]}
   ];
 
   // Este funciona
@@ -67,6 +67,8 @@ export class BodyComponent implements OnInit {
   editIdTask: any;
   editName: any;
   editDescription: any;
+  editComments: any = [];
+  newComment: any;
 
   // Animar eliminar lista
   isClicked: boolean = false;
@@ -117,6 +119,7 @@ export class BodyComponent implements OnInit {
     
     this.editName = this.data[idList].data[indice].title;
     this.editDescription = this.data[idList].data[indice].description;
+    this.editComments =  this.data[idList].data[indice].comment;
     this.editIdList = idList;
     this.editIdTask = indice;
     // this.editIdList = indice;
@@ -157,16 +160,21 @@ export class BodyComponent implements OnInit {
   newTask(idList: any){
     this.data.forEach((element:any, index) => {
       if (index === idList){
-        element.data.push({title: "nueva tarea", description: "nueva descripcion"});
+        element.data.push({title: "nueva tarea", description: "nueva descripcion", comment: ["comentario de prueba"]});
       }
     });
+  }
+
+  addNewComment(){
+    this.data[this.editIdList].data[this.editIdTask].comment.push(this.newComment);
+    this.newComment = "";
   }
 
 
   //Crud de listas
   newList(){
     const otherList = [
-      {title: "Configurar nuevo el entorno de desarrollo.", description: "aqui va la descripcion nuevoo"},
+      {title: "Configurar nuevo el entorno de desarrollo.", description: "aqui va la descripcion nuevoo", comment: ["comentario de prueba"]},
     ];
     this.clickEditList.push(false);
   //   this.data.push({ name: "Nueva lista", data:  otherList});
