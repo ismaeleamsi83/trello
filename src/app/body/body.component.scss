@@ -217,3 +217,11 @@
 #task:hover #removeTask{
   visibility: visible;
 }
+
+#task {
+  border: 1px solid transparent;
+}
+
+#task:hover {
+  border-color: #004974;
+}
